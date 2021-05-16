@@ -7,7 +7,7 @@ const { getThemeVariables } = require('antd/dist/theme');
 let themeVariables = { ...getThemeVariables({ dark: true }), ...overrides };
 
 
-module.exports = withAntdLess({
+let lessConfig = withAntdLess({
     // optional
     modifyVars: themeVariables,
     // optional
@@ -28,3 +28,10 @@ module.exports = withAntdLess({
         webpack5: true,
     },
 });
+
+module.exports = {
+    ...lessConfig,
+    env: {
+        environment: process.env.NODE_ENV,
+    },
+}

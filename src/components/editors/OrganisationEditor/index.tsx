@@ -42,7 +42,6 @@ const OrganisationEditor: React.FC<IOrganisationEditor> = ({ organisation, onSav
         setDisabled(true);
         try {
             let newOrganisation = { ...organisation, ...values };
-            console.log(newOrganisation);
             newOrganisation = await saveOrganisation(newOrganisation);
             if (onSave != null) {
                 await onSave(newOrganisation);

@@ -1,7 +1,15 @@
 import base from "../config/configData";
+import local from "../config/env/local";
+import production from "../config/env/production";
 import { parseNumber } from "./parseNumber";
 
-let configItems = base;
+let environments = {
+    development: local,
+    production: production
+};
+let environmentVars = environments[process?.env?.environment] ?? environments?.production ?? {};
+
+let configItems = { ...base, ...environmentVars };
 
 class configHandler {
     configItems: any = {};
@@ -11,6 +19,9 @@ class configHandler {
             let value = configItems[key];
             this.add(key, value);
         }
+
+
+
     }
 
     add(key: string, value: any) {

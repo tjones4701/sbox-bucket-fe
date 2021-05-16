@@ -61,7 +61,6 @@ const AuthenticationObj = {
 
         appStore.set('auth', authData);
         AuthenticationObj.authData = authData;
-        console.log(AuthenticationObj.isExpired());
         return authData;
     },
     getAuthData: () => {

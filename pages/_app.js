@@ -6,8 +6,7 @@ import '../styles/colors.scss';
 import '../styles/globals.less';
 
 
-
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, props }) {
     return (
         <>
             <PageLayout>
