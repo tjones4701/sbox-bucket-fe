@@ -5,8 +5,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start-server": "next start",
-        "start": "npm run build && npm run start-server"
+        "start": "next start"
     },
     "dependencies": {
         "@ant-design/icons": "^4.6.2",
