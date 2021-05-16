@@ -1,0 +1,11 @@
+$color-primary: "#0C4160";
+$color-primary-dark: "#071330";
+$color-secondary-dark: "#738FA7";
+$color-secondary: "#C3CEDA";
+
+:root {
+    --color-primary: #{$color-primary};
+    --color-primary-dark: #{$color-primary-dark};
+    --color-secondary: #{$color-secondary};
+    --color-secondary-dark: #{$color-secondary-dark};
+}

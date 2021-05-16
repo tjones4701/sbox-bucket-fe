@@ -1,0 +1,34 @@
+
+.app-bar {
+    height: 64px;
+    background:  @primary-3;
+    border-bottom: 1px solid @primary-6;
+    display: flex;
+    justify-content: space-between;
+    padding-left: @padding-lg;
+    padding-right: @padding-lg;
+    align-items:center;
+}
+.app-bar-logo {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.app-bar-actions {
+    display:flex;
+    align-items: flex-end;
+    >div {
+        padding: @padding-sm;
+    }
+}
+
+.content-container {
+    width: 100%;
+    display:flex;
+    justify-content: center;
+}
+.content {    
+    padding-top: @padding-lg *2;
+    width: 90vw;
+    max-width: 1000px;
+}
