@@ -12,6 +12,21 @@ jobs:
     
     - name: Checkout source code
       uses: actions/checkout@v1
+      
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Build package
+      run: npm run build
+      
+      
+    - name: Build package
+      run: npm run build
+      
+    - name: Remove File
+      uses: JesseTG/rm@v1.0.2
+      with:
+        path: node_modules
 
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*'
