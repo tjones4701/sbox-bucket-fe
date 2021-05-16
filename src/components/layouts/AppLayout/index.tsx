@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import "reflect-metadata";
 import RequiresAuthentication from "../../common/RequiresAuthentication";
 import Link from "../../design-system/Link";
-import styles from "./styles.module.less";
+import styles from "./styles.module.scss";
 
 export interface IAppLayout {
     children?: ReactNode,

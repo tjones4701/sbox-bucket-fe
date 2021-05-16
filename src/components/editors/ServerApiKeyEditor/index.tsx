@@ -1,6 +1,5 @@
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { Alert, Button, List, Modal, Popconfirm, Spin, Tag } from "antd";
-import Tooltip from "antd/es/tooltip";
+import { Alert, Button, List, Modal, Popconfirm, Spin, Tag, Tooltip } from "antd";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import "reflect-metadata";

@@ -4,7 +4,7 @@ import Meta from "antd/lib/card/Meta";
 import React from "react";
 import PageLayout from "../src/components/layouts/PageLayout";
 import { ApplicationConfig } from "../src/lib/config";
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.scss';
 
 
 

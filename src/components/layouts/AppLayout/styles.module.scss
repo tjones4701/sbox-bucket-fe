@@ -1,12 +1,12 @@
 
 .app-bar {
     height: 64px;
-    background:  @primary-3;
-    border-bottom: 1px solid @primary-6;
+    background:  var(--primary-3);
+    border-bottom: 1px solid var(--primary-6);
     display: flex;
     justify-content: space-between;
-    padding-left: @padding-lg;
-    padding-right: @padding-lg;
+    padding-left: var(--padding-lg);
+    padding-right: var(--padding-lg);
     align-items:center;
 }
 .app-bar-logo {
@@ -18,7 +18,7 @@
     display:flex;
     align-items: flex-end;
     >div {
-        padding: @padding-sm;
+        padding: var(--padding-sm);
     }
 }
 
@@ -28,7 +28,7 @@
     justify-content: center;
 }
 .content {    
-    padding-top: @padding-lg *2;
+    padding-top: calc(--padding-lg * 2);
     width: 90vw;
     max-width: 1000px;
 }

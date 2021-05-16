@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "../src/components/design-system/Link";
 import PageLayout from "../src/components/layouts/PageLayout";
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.scss';
 
 
 const Home: React.FC = () => {
