@@ -27,9 +27,16 @@ const Login: React.FC = () => {
                             maxHeight: "200px",
                             height: "clam(100px,20vh,400px)",
                             objectFit: "cover"
-                        }} alt="login" src="/images/login.png" />}
+                        }} alt="login" src="/images/sandbox.png" />}
                     >
                         <h1>Welcome to SBucket</h1>
+                        <p>
+                            SBucket is a data layer that will take care of the complicated job of managing servers, player, groups, and their data.
+                            <br />
+                            <br />
+                            During alpha we will focus on building apis and tools for managing data, allowing you to focus on building your gamemode.
+                        </p>
+
 
                         <Meta description={loginButton} />
                         <br />
