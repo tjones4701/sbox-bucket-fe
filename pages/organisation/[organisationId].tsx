@@ -56,14 +56,18 @@ const Home: React.FC = () => {
             ]}
         >
             <OrganisationEditor organisation={organisation} />
-            <br />
-            <Card title="Quick Links">
-                <div className={styles['quick-links']}>
-                    <Link button type="dashed" href={`${orgLink}players`}>Players</Link>
-                    <Link button type="dashed" href={`${orgLink}events`}>Events</Link>
-                    <Link button type="dashed" href={`${orgLink}servers`}>Servers</Link>
-                </div>
-            </Card>
+            {organisation != null && (
+                <>
+                    <br />
+                    <Card title="Quick Links">
+                        <div className={styles['quick-links']}>
+                            <Link button type="dashed" href={`${orgLink}players`}>Players</Link>
+                            <Link button type="dashed" href={`${orgLink}events`}>Events</Link>
+                            <Link button type="dashed" href={`${orgLink}servers`}>Servers</Link>
+                        </div>
+                    </Card>
+                </>
+            )}
             {inner}
         </AppLayout>
     )
