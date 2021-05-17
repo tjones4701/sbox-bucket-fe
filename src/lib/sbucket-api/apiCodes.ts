@@ -1,4 +1,13 @@
-export type SbucketApiCodes = "OrganisationGroups" | "ORGANISATIONS" | "ME" | "ORGANISATION" | "SERVERS" | "SERVER" | "SERVER_KEYS";
+export type SbucketApiCodes =
+    "OrganisationGroups"
+    | "ORGANISATIONS"
+    | "ME"
+    | "ORGANISATION"
+    | "SERVERS"
+    | "SERVER"
+    | "SERVER_KEYS"
+    | "PLAYER"
+    | "PLAYERS";
 export const SbucketApiConfigurations = {
     "APIS.SBUCKET.ME": {
         url: "me",
@@ -18,6 +27,14 @@ export const SbucketApiConfigurations = {
     },
     "APIS.SBUCKET.SERVER": {
         url: "servers/:id",
+        version: 1,
+    },
+    "APIS.SBUCKET.PLAYERS": {
+        url: "organisations/:organisationId/players",
+        version: 1,
+    },
+    "APIS.SBUCKET.PLAYER": {
+        url: "organisations/:organisationId/players/:playerId",
         version: 1,
     },
     "APIS.SBUCKET.SERVER_KEYS": {

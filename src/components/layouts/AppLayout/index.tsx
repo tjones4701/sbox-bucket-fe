@@ -1,6 +1,8 @@
+import { CodeOutlined } from "@ant-design/icons";
 import Breadcrumb from "antd/lib/breadcrumb";
 import React, { ReactNode } from "react";
 import "reflect-metadata";
+import { ApplicationConfig } from "../../../lib/config";
 import RequiresAuthentication from "../../common/RequiresAuthentication";
 import Link from "../../design-system/Link";
 import styles from "./styles.module.scss";
@@ -47,14 +49,8 @@ const AppLayout: React.FC<IAppLayout> = ({ children, breadcrumbs }) => {
                 </div>
                     <div className={styles['app-bar-actions']}>
                         <div>
-                            Action 1
-                    </div>
-                        <div>
-                            Action 2
-                    </div>
-                        <div>
-                            Action 3
-                    </div>
+                            <Link type='ghost' icon={<CodeOutlined />} button href={`${ApplicationConfig.get('DOCUMENTATION_URL') ?? '/'}`}>Apis</Link>
+                        </div>
                     </div>
                 </div>
                 <div className={styles['page']}>
@@ -63,7 +59,9 @@ const AppLayout: React.FC<IAppLayout> = ({ children, breadcrumbs }) => {
                     </div>
                     <div className={styles['content-container']}>
                         <div className={styles['content']}>
+                            <br />
                             {breadcrumb}
+                            <br />
                             {children}
                         </div>
                     </div>

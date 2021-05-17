@@ -60,7 +60,7 @@ const JsonEditor: React.FC<IJsonEditor> = ({ onChange, readOnly, value, name }) 
     return (
         <ClientOnly>
             {!readOnly && <Button size='small' onClick={handlePrompt} type='ghost'><EditOutlined /></Button>}
-            <DynamicReactJson onAdd={handleChange} enableClipboard={!readOnly} onDelete={handleChange} onEdit={handleChange} name={name ?? false} src={value} theme="monokai" />
+            <DynamicReactJson onAdd={handleChange} enableClipboard={!readOnly} onDelete={handleChange} onEdit={handleChange} name={name ?? false} src={value ?? {}} theme="monokai" />
 
         </ClientOnly>
     )

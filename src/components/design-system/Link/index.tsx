@@ -7,7 +7,8 @@ export interface ILink {
     href: string,
     button?: boolean,
     type?: ButtonType;
-    icon?: React.ReactNode
+    icon?: React.ReactNode,
+    children?: React.ReactNode
 }
 const Link: React.FC<ILink> = ({ href, children, button, type, icon }) => {
     const navigate = useNavigation();

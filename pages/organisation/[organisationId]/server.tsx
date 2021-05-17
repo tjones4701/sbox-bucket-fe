@@ -87,6 +87,10 @@ const ServerPage: React.FC = () => {
                     href: `/organisation/${organisationId}`
                 },
                 {
+                    name: "Servers",
+                    href: `/organisation/${organisationId}/servers`
+                },
+                {
                     name: "Server"
                 }
             ]}

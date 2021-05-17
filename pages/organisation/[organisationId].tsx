@@ -1,13 +1,15 @@
 
-import { Alert, Skeleton } from "antd";
+import { Alert, Card, Skeleton } from "antd";
 import React from "react";
 import { useAsync } from "react-use";
 import ServerList from "../../src/components/common/ServerList";
+import Link from "../../src/components/design-system/Link";
 import OrganisationEditor from "../../src/components/editors/OrganisationEditor";
 import AppLayout from "../../src/components/layouts/AppLayout";
 import { useQueryParams } from "../../src/hooks/useQueryParams";
 import { fetchOrganisation } from "../../src/lib/sbucket-api/organisations";
 import { fetchServers } from "../../src/lib/sbucket-api/servers";
+import styles from "./[organisationId].module.scss";
 
 
 const Servers: React.FC<{ organisationId: string }> = ({ organisationId }) => {
@@ -39,6 +41,8 @@ const Home: React.FC = () => {
         }
     }
 
+    const orgLink = `/organisation/${id}/`;
+
     return (
         <AppLayout
             breadcrumbs={[
@@ -52,6 +56,14 @@ const Home: React.FC = () => {
             ]}
         >
             <OrganisationEditor organisation={organisation} />
+            <br />
+            <Card title="Quick Links">
+                <div className={styles['quick-links']}>
+                    <Link button type="dashed" href={`${orgLink}players`}>Players</Link>
+                    <Link button type="dashed" href={`${orgLink}events`}>Events</Link>
+                    <Link button type="dashed" href={`${orgLink}servers`}>Servers</Link>
+                </div>
+            </Card>
             {inner}
         </AppLayout>
     )
