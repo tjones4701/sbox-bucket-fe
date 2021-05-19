@@ -1,9 +1,13 @@
 import { PlusCircleOutlined } from '@ant-design/icons';
-import { Table } from 'antd';
-import React, { useState } from 'react';
+import { Button, Modal, Table } from 'antd';
+import React, { Fragment, useState } from 'react';
 import { useAsync } from 'react-use';
+import { uniqueArray } from '../../../lib/common/uniqueArray';
 import { fetchPlayerEvents } from '../../../lib/sbucket-api/playerEvents';
+import { SBucketPlayerEvent } from '../../../lib/sbucket-api/types.ts/SBucketPlayerEvent';
 import Link from '../../design-system/Link';
+import JsonEditor from '../JsonEditor';
+import styles from "./styles.module.scss";
 
 
 export interface IEventList {
@@ -12,33 +16,50 @@ export interface IEventList {
     playerIds?: string[];
     canCreateNew?: boolean
 }
-const EventList: React.FC<IEventList> = ({ organisationId, playerIds, canCreateNew }) => {
+const EventList: React.FC<IEventList> = ({ organisationId, playerIds, canCreateNew, code }) => {
 
     const [page, setPage] = useState(0);
-    const pagination = {
-        current: page + 1,
-        pageSize: 10,
-    };
+    const [events, setEvents] = useState([]);
 
-    let { value, loading } = useAsync(async () => {
-        let events = await fetchPlayerEvents(organisationId, playerIds, pagination?.current, page);
-        return events;
+
+    let { loading } = useAsync(async () => {
+        let pageToLoad = Math.ceil(((events ?? []).length) / 10);
+        let newEvents = await fetchPlayerEvents(organisationId, playerIds, code, pageToLoad);
+        let allEvents: SBucketPlayerEvent[] = uniqueArray([...events, ...newEvents], 'id');
+
+        allEvents = allEvents.sort((a, b) => {
+            return b?.createdAt.localeCompare(a?.createdAt ?? "");
+        });
+
+        setEvents(allEvents);
+        return allEvents;
     }, [page, playerIds, organisationId]);
 
-    let playerData = value ?? [];
-
-    const handleTableChange = (pagination, filters, sorter) => {
-        setPage(pagination.current);
-        let data = ({
-            sortField: sorter.field,
-            sortOrder: sorter.order,
-            pagination,
-            ...filters,
-        });
+    const loadMore = () => {
+        setPage(page + 1);
     };
+
+    const showModal = (data) => {
+        let dataToShow = {
+            id: data?.id,
+            created: data?.createdAt,
+            code: data?.code,
+            playerId: data?.playerId,
+            metadata: data?.metadata ?? {}
+        }
+        Modal.info({
+            title: "JSON Data",
+            content: <JsonEditor readOnly value={dataToShow} />
+        });
+    }
 
 
     const columns = [
+        {
+            Title: 'Created',
+            dataIndex: 'createdAt',
+            key: 'createdAt'
+        },
         {
             title: 'PlayerId',
             dataIndex: 'playerId',
@@ -50,11 +71,17 @@ const EventList: React.FC<IEventList> = ({ organisationId, playerIds, canCreateN
             key: 'code',
         },
         {
-            title: 'Metadata',
-            dataIndex: 'metadata',
-            key: 'metadata',
+            title: 'Details',
+            render: (text, record, index) => {
+                return (
+                    <Fragment key={index}>
+                        <Button onClick={() => { showModal(record) }} type='primary'>View</Button>
+                    </Fragment>
+                )
+            }
         },
     ];
+
 
     return (
         <>
@@ -62,13 +89,16 @@ const EventList: React.FC<IEventList> = ({ organisationId, playerIds, canCreateN
                 <Link button href={`/organisation/${organisationId}/events`} icon={<PlusCircleOutlined />}>Create New</Link>
             </div>
             <Table
+                pagination={false}
                 columns={columns}
-                rowKey={record => record.playerId}
-                dataSource={playerData}
-                pagination={pagination}
+                rowKey={record => record.id}
+                dataSource={events}
                 loading={loading}
-                onChange={handleTableChange}
             />
+            <div className={styles['load-more-button']}>
+                <Button disabled={loading} type='primary' onClick={() => { loadMore() }}>Load more</Button>
+            </div>
+
         </>
     );
 }
