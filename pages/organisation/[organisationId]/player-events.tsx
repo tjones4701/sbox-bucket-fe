@@ -2,7 +2,7 @@ import { Skeleton } from "antd";
 import React from "react";
 import { useAsync } from "react-use";
 import "reflect-metadata";
-import PlayerEventsEditor from "../../../src/components/editors/PlayerEventsEditor";
+import ComingSoon from "../../../src/components/common/ComingSoon";
 import AppLayout from "../../../src/components/layouts/AppLayout";
 import { useQueryParams } from "../../../src/hooks/alterQueryParams";
 
@@ -35,11 +35,11 @@ const EventsPage: React.FC = () => {
                     href: `/organisation/${organisationId ?? ""}`
                 },
                 {
-                    name: "Player Events"
+                    name: "Events"
                 }
             ]}
         >
-            <PlayerEventsEditor organisationId={organisationId} />
+            <ComingSoon />
         </AppLayout>
     )
 };

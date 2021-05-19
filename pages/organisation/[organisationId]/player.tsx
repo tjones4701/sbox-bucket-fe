@@ -2,6 +2,7 @@ import { Alert, message, Skeleton } from "antd";
 import React from "react";
 import { useAsync } from "react-use";
 import "reflect-metadata";
+import EventList from "../../../src/components/common/EventsList";
 import PlayerEditor from "../../../src/components/editors/PlayerEditor";
 import AppLayout from "../../../src/components/layouts/AppLayout";
 import { useQueryParams } from "../../../src/hooks/alterQueryParams";
@@ -74,6 +75,11 @@ const PlayerPage: React.FC = () => {
             ]}
         >
             {innerComponent}
+            {!isNew && (
+                <>
+                    <EventList playerIds={[playerId]} organisationId={organisationId} canCreateNew />
+                </>
+            )}
         </AppLayout>
     )
 };

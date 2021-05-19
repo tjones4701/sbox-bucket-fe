@@ -6,6 +6,7 @@ export type SbucketApiCodes =
     | "SERVERS"
     | "SERVER"
     | "SERVER_KEYS"
+    | "PLAYER_EVENTS"
     | "PLAYER"
     | "PLAYERS";
 export const SbucketApiConfigurations = {
@@ -31,6 +32,10 @@ export const SbucketApiConfigurations = {
     },
     "APIS.SBUCKET.PLAYERS": {
         url: "organisations/:organisationId/players",
+        version: 1,
+    },
+    "APIS.SBUCKET.PLAYER_EVENTS": {
+        url: "organisations/:organisationId/events",
         version: 1,
     },
     "APIS.SBUCKET.PLAYER": {
