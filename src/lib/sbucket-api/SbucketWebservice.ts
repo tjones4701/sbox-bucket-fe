@@ -2,7 +2,7 @@
 import { Authentication } from "../authentication";
 import { ApplicationConfig } from "../config";
 import { RestfulWebservice } from "../webservices/RestfulWebservice";
-import { WebserviceError, WebserviceResponse } from "../webservices/Webservice";
+import { WebserviceError } from "../webservices/Webservice";
 import { SbucketApiCodes, SbucketApiConfigurations } from "./apiCodes";
 
 for (let i in SbucketApiConfigurations) {
@@ -113,21 +113,7 @@ export class SbucketWebservice extends RestfulWebservice {
                 await this.getConfig(config)
             );
         } catch (e) {
-            try {
-                let error: WebserviceError = e;
-                if (error.status === 401) {
-                    return new WebserviceResponse(null, false);
-                } else {
-                    throw e;
-                }
-            } catch (secondE) {
-                throw new WebserviceError(
-                    null,
-                    "ERROR_HANDLER_ERROR",
-                    "Error handling the error handler",
-                    secondE
-                );
-            }
+            throw e;
         }
     }
 }

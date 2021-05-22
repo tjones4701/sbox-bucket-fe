@@ -1,4 +1,4 @@
-import Button, { ButtonType } from 'antd/lib/button';
+import Button, { ButtonSize, ButtonType } from 'antd/lib/button';
 import NLink from 'next/link';
 import React from 'react';
 import { useNavigation } from '../../../hooks/useNavigation';
@@ -8,6 +8,7 @@ export interface ILink {
     button?: boolean,
     type?: ButtonType;
     icon?: React.ReactNode,
+    size?: ButtonSize
     children?: React.ReactNode
 }
 const Link: React.FC<ILink> = ({ href, children, button, type, icon }) => {
@@ -19,13 +20,13 @@ const Link: React.FC<ILink> = ({ href, children, button, type, icon }) => {
     if (button) {
         return (
             <Button href={href} icon={icon} type={type ?? 'primary'} onClick={handleClick}>
-                {children}
+                {children ?? <></>}
             </Button>
         );
     } else {
         return (
             <NLink href={href}>
-                {children}
+                {children ?? <></>}
             </NLink>
         )
     }
